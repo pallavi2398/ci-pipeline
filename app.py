@@ -1,11 +1,12 @@
-from app import app
+from flask import Flask, render_template
+app = Flask(__name__)
 
-def test_home():
-    client = app.test_client()
-    response = client.get('/')
-    assert response.status_code == 200
 
-def test_health():
-    client = app.test_client()
-    response = client.get('/health')
-    assert response.data == b'Server is up and running'
+@app.route('/')
+def hello_world():
+    return render_template('index.html')
+
+
+@app.route('/health')
+def health():
+    return 'Server is up and running'

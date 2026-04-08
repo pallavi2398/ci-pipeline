@@ -3,85 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Zero To Hero</title>
+    <title>CI/CD Pipeline Dashboard</title>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #020617);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #e2e8f0;
         }
+
         .container {
             text-align: center;
             padding: 2rem;
-            max-width: 640px;
+            max-width: 700px;
         }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.7rem;
             margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
+            background: linear-gradient(90deg, #38bdf8, #6366f1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
         .badge {
             display: inline-block;
-            margin: 1rem 0 2rem;
+            margin-bottom: 2rem;
             padding: 0.4rem 1.2rem;
-            border: 1px solid #7b2ff7;
+            border: 1px solid #6366f1;
             border-radius: 999px;
-            font-size: 0.9rem;
-            color: #c4b5fd;
+            font-size: 0.8rem;
+            color: #c7d2fe;
             letter-spacing: 0.05em;
         }
+
         .cards {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            min-width: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1.5rem;
+            min-width: 160px;
             flex: 1;
+            transition: 0.3s ease;
         }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+
         .card span {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #9ca3af;
+            color: #94a3b8;
             margin-bottom: 0.4rem;
         }
+
         .card strong {
-            font-size: 1.25rem;
-            color: #f9fafb;
+            font-size: 1.2rem;
+            color: #f8fafc;
+        }
+
+        .status {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #22c55e;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #64748b;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>DevOps Zero To Hero</h1>
-        <div class="badge">Josh Batch 10</div>
+        <h1>CI/CD Pipeline Dashboard 🚀</h1>
+        <p class="subtitle">Automated deployment using GitHub Actions & Docker</p>
+
+        <div class="badge">Production Ready • DevOps Project</div>
+
         <div class="cards">
             <div class="card">
                 <span>Framework</span>
-                <strong>Flask 3.1</strong>
+                <strong>Flask</strong>
             </div>
+
             <div class="card">
-                <span>Runtime</span>
-                <strong>Python 3.14</strong>
+                <span>CI/CD</span>
+                <strong>GitHub Actions</strong>
             </div>
+
             <div class="card">
-                <span>Deploy</span>
-                <strong>AWS ECS</strong>
+                <span>Container</span>
+                <strong>Docker</strong>
             </div>
+
+            <div class="card">
+                <span>Deployment</span>
+                <strong>AWS / Cloud</strong>
+            </div>
+        </div>
+
+        <div class="status">
+            ✅ Latest Build: Successful
+        </div>
+
+        <div class="footer">
+            Built with ❤️ for DevOps Automation
         </div>
     </div>
 </body>

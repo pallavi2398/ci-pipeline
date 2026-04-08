@@ -79,5 +79,5 @@ http://localhost:80
 This project goes beyond “setting up CI/CD” and focuses on how pipelines behave in real scenarios, including failures and debugging — a critical skill expected from DevOps engineers.
 
 **📣 Author**<br>
-Pallavi Agarwal
+Pallavi Agarwal<br>
 Aspiring DevOps Engineer | Learning in Public

@@ -17,4 +17,4 @@ jobs:
           uses: docker/setup-compose-action@v2
 
         - name: Deploy with Docker Compose
-          run: docker compose -f ci-pipeline/docker-compose.yml up -d --build
+          run: docker compose -f docker-compose.yml up -d --build

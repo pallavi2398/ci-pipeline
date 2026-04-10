@@ -1,61 +1,107 @@
+
+![CI](https://img.shields.io/badge/CI-Passing-brightgreen)
+![Docker](https://img.shields.io/badge/Docker-Enabled-blue)
+![Deployment](https://img.shields.io/badge/Deployed-AWS-orange)
+
 ## 🚀 CI/CD Pipeline Implementation & Debugging (GitHub Actions)
 ## 👩‍💻 About This Project
 
-This project demonstrates the implementation of a CI (Continuous Integration) pipeline for a Flask-based application using GitHub Actions — with a strong focus on debugging real pipeline failures rather than just setting up workflows.
+This project demonstrates a complete **CI/CD pipeline for a Flask-based application**, going beyond basic CI to include **Dockerization, image registry, and automated deployment on AWS using a self-hosted runner**.
 
-**Instead of stopping at a successful pipeline setup, this project explores:**
+**Instead of just building a working pipeline, this project focuses on:**
 
-- Why pipelines fail
-- How to debug failures using logs
-- How to fix issues systematically
+
+- Real-world pipeline failures
+- Debugging across environments (local vs CI vs production)
+- Understanding how systems behave in real deployments
+
+
 **🎯 What This Project Demonstrates**
-- Writing and structuring GitHub Actions workflows
-- Understanding CI pipeline lifecycle (trigger → job → steps)
-- Debugging pipeline failures using logs
-- Integrating automated testing using pytest
-- Fixing real-world CI issues (not just configuration setup)
+
+- Writing and structuring multiple GitHub Actions workflows
+- CI with Python matrix strategy (3.13, 3.14)
+- Code linting using flake8
+- Containerization using Docker
+- Building & pushing images to Docker Hub
+- Deployment using Docker Compose
+- Self-hosted runner setup on AWS EC2
+- Debugging real-world CI/CD failures
+
+
 ## 🧱 Project Structure
 ```text
 .
-├── .github/workflows/ci-workflow.yml   # CI pipeline definition
-├── templates/index.html               # Frontend UI
-├── app.py                             # Flask application
-├── run.py                             # App runner
-├── requirements.txt                   # Dependencies
-├── test_app.py                        # Test cases (pytest)
+├── .github/workflows/
+│   ├── lint-and-matrix-strategy.yml   # CI: Linting + Python matrix
+│   ├── docker-push-and-build.yml      # Docker build & push
+│   └── deploy-app.yml                # Deployment workflow (self-hosted)
+├── templates/index.html             # Frontend UI
+├── app.py                           # Flask application
+├── run.py                           # App runner
+├── test_app.py                      # Test cases (pytest)
+├── Dockerfile                       # Container definition
+├── docker-compose.yml               # Deployment configuration
+├── requirements.txt                # Dependencies
+├── .dockerignore
+├── screenshots
+│   ├── cicd-docker-deploy          #snaps of full pipeline
 └── README.md
 ```
 
 ## ⚙️ CI Pipeline Overview
 
-**The pipeline is triggered on every push and performs:**
+**🔹 1. CI Pipeline (Lint + Matrix Strategy)**
 
-- Code checkout
-- Python environment setup
-- Dependency installation
-- Test execution using pytest
+- Runs on every push to main
+- Tests across multiple Python versions (3.13, 3.14)
+- Runs flake8 for code quality
 
-**🚨 Real Issue Faced (Debugging Scenario)**
+**🔹 2. Docker Build & Push**
 
-During implementation, the pipeline failed despite correct configuration.
+- Builds Docker image from Dockerfile
+- Pushes image to Docker Hub
+- Uses GitHub Secrets & Variables for authentication
+
+**🔹 3. Deployment Pipeline**
+
+- Triggered manually (workflow_dispatch)
+- Runs on self-hosted runner (AWS EC2)
+- Pulls latest image
+- Deploys using Docker Compose
+
+## 🚨 Real Issues Faced (Debugging Scenarios)
+This project focuses heavily on real debugging:
+
+**❌ Issue 1: Docker Compose File Not Found**
 ```bash
-Error:
-collected 0 items
-Root Cause:
-
-The CI system executed successfully, but no tests were available to run.
+Error: no configuration file provided: not found
 ```
+*Root Cause:*
+- File name mismatch (Docker-compose.yml vs docker-compose.yml)
+*Fix:*
+- Renamed file correctly (case-sensitive in Linux)
 
-**Resolution:**
-- Identified issue through pipeline logs
-- Added a test case (test_app.py)
-- Re-ran pipeline successfully
+
+**❌ Issue 2: Works Locally, Fails in CI**
+Code worked on Mac but failed in GitHub Actions<br>
+*Root Cause:*
+- Path and environment differences
+
+
+**❌ Issue 3: Deployment Failures on Self-hosted Runner**
+Multiple failed deploy jobs before success<br>
+*Fix:*
+- Debugged logs on runner
+- Fixed workflow + environment issues
+
 
 ## 🧠 Key Engineering Learnings
-- CI failures are often logic or validation issues, not tool issues
-- A “successful workflow” does not guarantee a meaningful pipeline
-- Logs are the primary source of truth while debugging
-- CI pipelines validate code — not just automate steps
+
+- CI success ≠ Deployment success
+- Linux environments are case-sensitive (unlike Mac)
+- Docker ensures consistency across environments
+- Debugging pipelines is a critical DevOps skill
+- Self-hosted runners give more control but require setup & maintenance
 
 **▶️ Run Locally**
 ```bash
@@ -68,15 +114,30 @@ python run.py
 http://localhost:80
 ```
 
+**🐳 Run with Docker**
+```bash
+docker build -t flask-app .
+docker run -d -p 80:80 flask-app
+```
+
+## ☁️ Deployment
+
+- Hosted on AWS EC2
+- Deployed using Docker Compose
+- Automated via GitHub Actions (self-hosted runner)
+
 ## 🔧 Future Enhancements
-- Dockerizing the application
-- Adding linting (flake8) for code quality
-- Implementing multi-stage CI/CD pipeline
-- Deployment to AWS (ECS / EC2)
+
+- Add integration tests in CI pipeline
+- Implement rollback strategy in deployment
+- Add monitoring & logging (Prometheus/Grafana)
+- Move deployment to Kubernetes
 
 ## 💡 Why This Project Matters
 
-This project goes beyond “setting up CI/CD” and focuses on how pipelines behave in real scenarios, including failures and debugging — a critical skill expected from DevOps engineers.
+This is not just a Flask app.
+
+It demonstrates how a real-world CI/CD pipeline behaves under failure conditions, and how to debug and fix issues across multiple environments — a key skill for DevOps engineers.
 
 **📣 Author**<br>
 Pallavi Agarwal<br>

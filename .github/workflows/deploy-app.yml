@@ -16,12 +16,5 @@ jobs:
         - name: Setup docker compose
           uses: docker/setup-compose-action@v2
 
-        - name: Debug repo structure
-          run: |
-            echo "Current path:"
-            pwd
-            echo "Files:"
-            ls -R
-
         - name: Deploy with Docker Compose
-          run: docker compose -f docker-compose.yml up -d --build
+          run: docker compose up -d --build

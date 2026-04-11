@@ -18,6 +18,7 @@ jobs:
             - name: Trivy Scanner
               uses: aquasecurity/trivy-action@v0.33.1
               with:
+                image-ref: ${{ vars.DOCKERHUB_USER }}/flask-app:latest
                 severity: 'CRITICAL'
                 exit-code: '1'
               

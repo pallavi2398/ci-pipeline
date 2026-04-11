@@ -24,6 +24,6 @@ jobs:
                 image-ref: ${{ vars.DOCKERHUB_USER }}/flask-app:latest
                 severity: 'CRITICAL,HIGH'
                 exit-code: '1'
-                trivyignore: ${{ github.workspace }}/.trivyignore
+                trivyignores: .trivyignore
               
 

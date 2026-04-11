@@ -1,4 +1,4 @@
-#ignore the vulnerability for
+# Ignore known base image vulnerabilities (no fixes yet)
 
-#libgc
-CVE-2026-0861
+CVE-2025-69720
+CVE-2026-29111

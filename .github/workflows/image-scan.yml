@@ -9,6 +9,9 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+              
             - name: Login to DockerHub
               uses: docker/login-action@v4
               with:
@@ -21,5 +24,6 @@ jobs:
                 image-ref: ${{ vars.DOCKERHUB_USER }}/flask-app:latest
                 severity: 'CRITICAL, HIGH'
                 exit-code: '1'
+                trivyignore: ${{ github.workspace }}/.trivyignore
               
 

@@ -21,7 +21,7 @@ jobs:
                 python-version: 3.12
 
             - name: Install Pip Audit #Package that helps in auditing
-              run: pip insall pip-audit
+              run: pip install pip-audit
 
             - name: Audit Dependencies
               run: pip-audit -r requirements.txt

@@ -11,7 +11,7 @@ jobs:
         steps:
             - name: Checkout Code
               uses: actions/checkout@v4
-              
+
             - name: Login to DockerHub
               uses: docker/login-action@v4
               with:
@@ -22,7 +22,7 @@ jobs:
               uses: aquasecurity/trivy-action@v0.35.0
               with:
                 image-ref: ${{ vars.DOCKERHUB_USER }}/flask-app:latest
-                severity: 'CRITICAL, HIGH'
+                severity: 'CRITICAL,HIGH'
                 exit-code: '1'
                 trivyignore: ${{ github.workspace }}/.trivyignore
               

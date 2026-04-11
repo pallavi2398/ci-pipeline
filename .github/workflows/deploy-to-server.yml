@@ -10,6 +10,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
 
+            - name: Debug Key Length
+              run: echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" | wc -c
+              
             - name: SSh to Prod Server
               uses: appleboy/ssh-action@v1.0.3
               with:
